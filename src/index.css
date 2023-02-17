@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.iconStyle {
+    @apply flex flex-col gap-8 px-4 text-xl py-5 bg-[#0505052c] rounded-3xl shrink-0 w-auto
+}
