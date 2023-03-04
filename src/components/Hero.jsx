@@ -9,7 +9,7 @@ const Hero = () => {
         Out of time, No love, Bad habit, <br />
         and so much more
       </p>
-      <img src="Frame 5.png" alt="" />
+      <img src="Frame 5.png" alt="" className="w-64 sm:w-auto"/>
       </div>
         <img src="Pexels Photo by Eric Esma.png" alt="" className="hidden sm:block object-cover z-50" />
         <img src="Vector.png" alt="" className="hidden sm:block sm:absolute sm:right-0 sm:bottom-0 sm:top-0 sm:h-full" />
