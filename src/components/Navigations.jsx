@@ -13,8 +13,7 @@ const Navigations = ({to, title, route, onClick}) => {
     <Link to={to}>
     <div onClick={onClick}>
         <i class={`${title} ${activeIcon}`}></i>
-        <span className={`${activeText} text-lg ml-10 sm:hidden`}>{route}</span>
-
+        <span className={`${activeText} text-lg ml-10 lg:hidden`}>{route}</span>
     </div>
     </Link>
   )

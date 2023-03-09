@@ -6,7 +6,6 @@ const handleClick = () => {
     const apiUrl = "https://accounts.spotify.com/authorize";
     
     window.location.href = `${apiUrl}?client_id=${clientId}&redirect_uri=${redirectUrl}&response_type=token&show_dialogue=true`;
-
 }
 
   return (

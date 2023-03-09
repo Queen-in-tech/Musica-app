@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import LogIn from "./components/LogIn";
 import Home from "./screens/Home"
-import Collections from "./screens/Collections"
+import Favourites from "./screens/Favourites"
 import Album from "./screens/Album"
 import Videos from "./screens/Videos"
 
@@ -32,7 +32,7 @@ const App = () => {
             <Routes>
                 <Route path="/" element= {<Home/>}/>
                 <Route path="/Album" element= {<Album/>}/>
-                <Route path="/Collections" element= {<Collections/>}/>
+                <Route path="/Favourites" element= {<Favourites/>}/>
                 <Route path="/Video" element= {<Videos/>}/>
             </Routes>
         </Router>
