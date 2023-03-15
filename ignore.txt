@@ -1,0 +1,36 @@
+useEffect(() => {
+  const likedIds = JSON.parse(window.localStorage.getItem("likedIds"))
+  const token = window.localStorage.getItem("token")
+  const showLiked = () => {
+    Promise.all(
+      likedIds.map((liked) => {
+        return fetch(`https://api.spotify.com/v1/albums/${liked}`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          },
+        })
+        .then((res) => (res.json()))
+      })
+    )
+    .then((res) => {
+      const albums = res.map((album) => album)
+      setData(res)
+      setAlbums(albums)
+    })
+  } 
+  showLiked()
+}, [data])
+
+// Access the tracks for each album
+albums.map((album) => {
+  fetch(`https://api.spotify.com/v1/albums/${album.id}/tracks`, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    },
+  })
+  .then((res) => (res.json()))
+  .then((res) => {
+    const tracks = res.items
+    // Do something with the tracks for this album
+  })
+})

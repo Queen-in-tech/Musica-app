@@ -1,0 +1,62 @@
+import { useEffect, useState } from "react"
+import Tracks from "./Tracks" 
+
+const AlbumsDetails = ({track, album}) => {
+    const likedIds = JSON.parse(localStorage.getItem('likedIds')) || [];
+    const [isInFavourite, setIsInFavourite] = useState()
+
+    useEffect(() => {
+        if(likedIds.includes(album.id)){
+            setIsInFavourite(true)
+        }
+        else{
+            setIsInFavourite(false)
+        }
+      }, [likedIds]);
+
+
+    const isAlreadyLiked = isInFavourite ? "fa-solid fa-heart" : "fa-regular fa-heart" 
+    const faveId = isInFavourite ? "Remove from favourites": "Add to favourites"
+
+    const favourite = (albumId) => {
+        const likedIds = JSON.parse(localStorage.getItem('likedIds')) || []; 
+
+    if (likedIds.includes(albumId)) {
+        const updatedIds = likedIds.filter(id => id !== albumId);
+        localStorage.setItem('likedIds', JSON.stringify(updatedIds));
+        setIsInFavourite(false)
+    } else {
+        likedIds.push(albumId);
+        localStorage.setItem('likedIds', JSON.stringify(likedIds));
+        setIsInFavourite(true)
+    }
+} 
+    
+  return (
+    <div className="mx-auto lg:mx-0 shrink-0 sm:shrink md:shrink-0">
+    <div className='flex flex-col sm:flex-row sm:gap-8 font-body md:mx-0'>
+        <img src={album.images[1].url} alt="album-img" className="rounded-lg w-[350px] sm:w-80 sm:mb-8"/>
+        <div className='text-white mt-3 sm:mt-32 pl-2'>
+            <p className='text-4xl text-[#A4C7C6] font-bold capitalize mb-3 max-w-screen-md'>{album.name}</p>
+            <p className='text-xs mb-1 text-gray-300 w-[340px] sm:w-80 md:w-96 lg:w-[564px]'>{album.copyrights[0].text}</p>
+            <p className="text-sm mb-4 text-gray-300 w-[350px] sm:w-80 md:w-96 lg:w-[564px]">{`${album.total_tracks} tracks - ${album.release_date}`}</p>
+            <div className="flex gap-6 mb-5">
+                <div className="bg-[#33373B] py-2 px-3 flex rounded-xl items-center">
+                    <i class="fa-solid fa-play-circle mr-3 text-[#FACD66] text-xs"></i>
+                    <span className="text-xs font-light">Play all</span>
+                </div>
+                <div className="bg-[#33373B] py-2 px-3 rounded-xl flex items-center">
+                    <i class={`${isAlreadyLiked} mr-3 text-[#FACD66] text-xs cursor-pointer`} onClick={() => favourite(album.id)}></i>
+                    <span className="text-xs font-light">{`${faveId}`}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div className="pb-20">
+        <Tracks tracks={track.items} album={album}/>
+        </div>
+    </div>
+  )
+}
+
+export default AlbumsDetails

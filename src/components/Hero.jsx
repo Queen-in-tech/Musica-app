@@ -11,7 +11,7 @@ const Hero = () => {
       </p>
       <img src="Frame 5.png" alt="" className="w-64 sm:w-auto"/>
       </div>
-        <img src="Pexels Photo by Eric Esma.png" alt="" className="hidden sm:block object-cover z-40" />
+        <img src="Pexels Photo by Eric Esma.png" alt="" className="hidden sm:block object-cover z-30" />
         <img src="Vector.png" alt="" className="hidden md:block md:absolute md:h-full md:right-0 lg:right-0 lg:bottom-0 lg:top-0 " />
         <img src="Vectorsmall.png" alt="" className="absolute right-0 sm:hidden"/>
     </div>

@@ -25,7 +25,7 @@ const Header = ({handleClick}) => {
         <img src="logo.svg" alt="" className='mr-16 ml-2'/>
         </div>
         <div className='bg-iconsBg p-3 rounded-2xl bg-[#0505052c] items-center w-full hidden sm:flex'>
-        <i class="fa-solid fa-search text-gray-600 mr-4"></i> 
+        <i class="fa-solid fa-search text-gray-600 mr-4" onClick={getSearchKey}></i> 
         <input type="text" onKeyDown={getSearchKey} className='bg-transparent text-zinc-300 placeholder:text-gray-500 outline-none w-full' placeholder='Search artists'/>
         </div>
         <i class="fa-solid fa-search text-icons text-2xl sm:hidden"></i> 

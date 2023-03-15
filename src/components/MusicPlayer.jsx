@@ -1,6 +1,6 @@
 const MusicPlayer = () => {
   return (
-    <div className='relative'>
+    <div className='relative z-30'>
         <div className='fixed bottom-0 w-full h-auto py-1 px-6 lg:px-24 bg-zinc-900 opacity-95 flex items-center justify-between'>
           <div className="flex gap-3 items-center">
           <img className="rounded-2xl mt-5" src="playerimg.png" alt="img" />
