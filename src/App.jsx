@@ -48,7 +48,8 @@ const App = () => {
           console.log(data.access_token, data.refresh_token)
           window.localStorage.setItem("refreshToken", data.refresh_token);
           window.localStorage.setItem("accessToken", data.access_token)
-    } else {
+    }
+    else {
           console.log("Error exchanging code for token:", data.error);
         }
     }

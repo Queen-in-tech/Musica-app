@@ -30,8 +30,8 @@ const Liked = ({album}) => {
            <p className='text-xs text-white uppercase'>{album.artists[0].name}</p>
            </div>
            <i className={`${likedIcon} cursor-pointer hover:scale-110`} onClick={() => handleLiked(album.id)} ></i>
-           </div>
-           </div>
+          </div>
+          </div>
   )
 }
 

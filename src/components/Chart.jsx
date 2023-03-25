@@ -23,7 +23,7 @@ const Chart = ({chart}) => {
     if(currentLikedIds.includes(chart.id)){
       setLiked(true)
     }
-  })
+  },[])
   
   const likedIcon = isLiked ? `fa-solid fa-heart text-[#FACD66]` : `fa-regular fa-heart text-[#FACD66]`
 

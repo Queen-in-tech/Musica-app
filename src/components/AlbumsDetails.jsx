@@ -33,11 +33,11 @@ const AlbumsDetails = ({track, album}) => {
 } 
     
   return (
-    <div className="mx-auto lg:mx-0 shrink-0 sm:shrink md:shrink-0">
+    <div className="mx-auto lg:mx-0 shrink md:shrink-0">
     <div className='flex flex-col sm:flex-row sm:gap-8 font-body md:mx-0'>
-        <img src={album.images[1].url} alt="album-img" className="rounded-lg w-[350px] sm:w-80 sm:mb-8"/>
+        <img src={album.images[1].url} alt="album-img" className="rounded-lg w-[350px] mx-auto sm:mx-0 sm:w-80 sm:mb-8"/>
         <div className='text-white mt-3 sm:mt-32 pl-2'>
-            <p className='text-4xl text-[#A4C7C6] font-bold capitalize mb-3 max-w-screen-md'>{album.name}</p>
+            <p className='text-4xl text-[#A4C7C6] font-bold capitalize mb-3 max-w-sm md:max-w-md'>{album.name}</p>
             <p className='text-xs mb-1 text-gray-300 w-[340px] sm:w-80 md:w-96 lg:w-[564px]'>{album.copyrights[0].text}</p>
             <p className="text-sm mb-4 text-gray-300 w-[350px] sm:w-80 md:w-96 lg:w-[564px]">{`${album.total_tracks} tracks - ${album.release_date}`}</p>
             <div className="flex gap-6 mb-5">

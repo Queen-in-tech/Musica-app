@@ -1,4 +1,7 @@
 const MusicPlayer = () => {
+
+  
+
   return (
     <div className='relative z-30'>
         <div className='fixed bottom-0 w-full h-auto py-1 px-6 lg:px-24 bg-zinc-900 opacity-95 flex items-center justify-between'>
@@ -18,7 +21,7 @@ const MusicPlayer = () => {
               <i class="fa-solid fa-forward"></i>
               <i class="fa-solid fa-repeat"></i>
             </div>
-            <input type="range" className="sm:w-[250px] md:w-[420px] lg:w-[749px] accent-[#FACD66]" />
+            <input type="range" className="sm:w-[250px] md:w-[420px] lg:w-[745px] accent-[#FACD66]" />
           </div>
 
           <div className="hidden sm:flex gap-1">
