@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import qs from "qs";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
+import { UserProvider } from "../context";
 import LogIn from "./components/LogIn";
 import Home from "./screens/Home"
 import Favourites from "./screens/Favourites"
@@ -62,7 +63,7 @@ const App = () => {
 
   return (
     !accessToken ? <LogIn/> : 
-    <div>
+   <UserProvider>
         <Router>
             <Routes>
                 <Route path="/" element= {<Home/>}/>
@@ -71,7 +72,7 @@ const App = () => {
                 <Route path="/Video" element= {<Videos/>}/>
             </Routes>
         </Router>
-    </div>
+   </UserProvider>
   )
 }
 

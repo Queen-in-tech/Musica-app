@@ -35,7 +35,6 @@ const Album = () => {
              const data = await res.json()
              let albums = data.tracks
              setTrack(albums)
-             console.log(albums)
              setAlbum(data)
              setIsReady(true)
            }

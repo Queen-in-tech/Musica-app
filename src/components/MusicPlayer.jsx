@@ -1,15 +1,19 @@
-const MusicPlayer = () => {
+import { useContext } from "react"
+import { UserContext } from "../../context"
 
+
+const MusicPlayer = () => {
+  const {currentTracks, currentAlbum} = useContext(UserContext)
   
 
   return (
     <div className='relative z-30'>
-        <div className='fixed bottom-0 w-full h-auto py-1 px-6 lg:px-24 bg-zinc-900 opacity-95 flex items-center justify-between'>
-          <div className="flex gap-3 items-center">
-          <img className="rounded-2xl mt-5" src="playerimg.png" alt="img" />
+        <div className='fixed bottom-0 w-full h-auto py-4 px-6 lg:px-24 bg-zinc-900 opacity-95 flex items-center justify-between'>
+          <div className="flex gap-3 items-center ">
+          <img className="" alt="img" src={currentAlbum.images[2].url}  />
           <div className="flex flex-col ">
-            <h3 className="text-white font-bold text-sm">Seasons in</h3>
-            <h3 className="text-gray-400 font-light text-xs">James</h3>
+            <h3 className="text-white font-bold text-sm">{currentTracks.name}</h3>
+            <h3 className="text-gray-400 font-light text-xs">{currentTracks.artists[0].name}</h3>
           </div>
           </div>
 
