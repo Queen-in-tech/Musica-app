@@ -18,7 +18,7 @@ const Releases = ({albums}) => {
     });
   }
   return (
-      <div className="lg:ml-20 mt-10 pb-8 relative">
+      <div className="lg:ml-20 mt-10 pb-20 relative">
       <p className="text-2xl font-bold text-white mb-4">New releases</p>
       <div ref={scrollRef} className="flex gap-4 sm:gap-4 shrink-0 overflow-x-scroll xl:overflow-hidden">
       { albums.map((album)=> {

@@ -1,9 +1,22 @@
-import { useEffect, useState } from "react"
-import Tracks from "./Tracks" 
+import { useEffect, useState, useContext, useRef } from "react";
+import { UserContext } from "../../context";
+import Tracks from "./Tracks";
 
 const AlbumsDetails = ({track, album}) => {
     const likedIds = JSON.parse(localStorage.getItem('likedIds')) || [];
-    const [isInFavourite, setIsInFavourite] = useState()
+    const [isInFavourite, setIsInFavourite] = useState();
+    const {setCurrentTracks, setCurrentAlbum, updateTracks, isPlaying , setIsPlaying} = useContext(UserContext);
+
+    
+    
+    const playPauseIcon = isPlaying ? "fa-solid fa-circle-pause" : "fa-solid fa-circle-play";
+    const playPauseText = isPlaying ? "Pause all" : "Play all";
+
+    const handleCurrentTrack = (track) => {
+        setCurrentTracks(track)
+        setCurrentAlbum(album)
+        setIsPlaying(!isPlaying)
+      }
 
     useEffect(() => {
         if(likedIds.includes(album.id)){
@@ -31,6 +44,8 @@ const AlbumsDetails = ({track, album}) => {
         setIsInFavourite(true)
     }
 } 
+
+
     
   return (
     <div className="mx-auto lg:mx-0 shrink md:shrink-0">
@@ -42,8 +57,8 @@ const AlbumsDetails = ({track, album}) => {
             <p className="text-sm mb-4 text-gray-300 w-[350px] sm:w-80 md:w-96 lg:w-[564px]">{`${album.total_tracks} tracks - ${album.release_date}`}</p>
             <div className="flex gap-6 mb-5">
                 <div className="bg-[#33373B] py-2 px-3 flex rounded-xl items-center">
-                    <i class="fa-solid fa-play-circle mr-3 text-[#FACD66] text-xs"></i>
-                    <span className="text-xs font-light">Play all</span>
+                    <i class={`${playPauseIcon} mr-3 text-[#FACD66]`}></i>
+                    <span className="text-xs font-light" onClick={() => handleCurrentTrack(track.items[0])}>{`${playPauseText}`}</span>
                 </div>
                 <div className="bg-[#33373B] py-2 px-3 rounded-xl flex items-center">
                     <i class={`${isAlreadyLiked} mr-3 text-[#FACD66] text-xs cursor-pointer`} onClick={() => favourite(album.id)}></i>

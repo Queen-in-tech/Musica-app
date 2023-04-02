@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react"
+import { useState, useContext } from "react"
+import { UserContext } from "../../context"
 
 import DesktopNav from "../components/DesktopNav"
 import Header from "../components/Header"
@@ -10,6 +11,7 @@ import NoFavourites from "../components/NoFavourites"
 const Favourites = () => {
   const [isNavOpen, setIsNavOpen] = useState(false)
   const [likedIds, setLikedIds] = useState(JSON.parse(localStorage.getItem("likedIds")) || [])
+  const {currentTracks, currentAlbum} = useContext(UserContext)
 
   const handleClick = () => {
     setIsNavOpen(!isNavOpen)
@@ -25,7 +27,7 @@ const Favourites = () => {
       <DesktopNav />
       {likedIds.length > 0 ? <Likes/> : <NoFavourites /> }
       </div>
-    <MusicPlayer />
+      {currentAlbum && <MusicPlayer/>}
     </div>
   )
 }

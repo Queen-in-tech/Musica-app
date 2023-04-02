@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
+import { UserContext } from "../../context"
 import qs from "qs"
 
 import DesktopNav from "../components/DesktopNav"
@@ -8,6 +9,7 @@ import Charts from "../components/Charts"
 import MobileNav from "../components/MobileNav"
 import Releases from "../components/Releases"
 import MusicPlayer from "../components/MusicPlayer"
+import Search from "../components/Search"
 
 
 const Home = () => {
@@ -17,7 +19,8 @@ const Home = () => {
   const refreshToken = localStorage.getItem('refreshToken')
   const [token, setToken] = useState(localStorage.getItem('accessToken'))
   const [resStatus, setResStatus] = useState(false)
-
+  const [errorReload, setErrorReload] = useState(false)
+  const {currentAlbum, searchIsReady} = useContext(UserContext)
   useEffect(() => {
     const getAlbums = async () => {
     try{
@@ -34,7 +37,8 @@ const Home = () => {
         }
         else if(res.status === 401){
           const newToken = await refreshAccessToken();
-             setToken(newToken); 
+             setToken(newToken);
+             setErrorReload(true) 
         }
         else{
           throw new error('Resquest failed')
@@ -45,7 +49,7 @@ const Home = () => {
     }
   }
     getAlbums()
-}, [resStatus])
+}, [errorReload])
 
 const refreshAccessToken = async () => {
   const response = await fetch("https://accounts.spotify.com/api/token", {
@@ -95,7 +99,8 @@ const refreshAccessToken = async () => {
     </div>
     <Releases albums= {albums} />
     </div>
-    <MusicPlayer />
+    {currentAlbum && <MusicPlayer/>}
+    {searchIsReady && <Search/>}
     </div>
   )
 }

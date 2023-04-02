@@ -1,5 +1,5 @@
 import { UserContext } from "../../context";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 const Tracks = ({tracks, album}) => {
   const {setCurrentTracks, setCurrentAlbum} = useContext(UserContext);
@@ -13,7 +13,6 @@ const Tracks = ({tracks, album}) => {
     <>
     {tracks.map((track) => {
         const durationInMinutes = (track.duration_ms / 1000 / 60).toFixed(2);
-        console.log(track)
         return <div className="w-full sm:w-[85vw]" key={track.id}>
         <div className="flex text-gray-300 bg-[#33373e42] px-3 py-2 items-center rounded-xl mb-3 sm:grid sm:grid-flow-col grid-cols-6 max-w-sm sm:max-w-none" onClick={() => handleCurrentTrack(track)}>
             <img src={album.images[2].url} alt="" className="mr-4" />
