@@ -84,7 +84,7 @@ const MusicPlayer = () => {
   }
 
   return (
-    <div className='z-30 transition duration-[5000ms] ease-in w-full h-auto py-2 px-6 lg:px-24 bg-zinc-900 fixed bottom-0 opacity-95'>
+    <div className='z-50 transition duration-[5000ms] ease-in w-full h-auto py-1 px-6 lg:px-24 bg-zinc-900 fixed bottom-0 opacity-95'>
 
           <Link to="/Playlists">
           <div className="h-1 w-32 bg-icons rounded-2xl mx-auto mb-3 hidden md:block"></div>

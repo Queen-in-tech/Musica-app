@@ -40,7 +40,7 @@ const Header = ({handleClick}) => {
             setSearchAlbums(data.albums.items)
             setSearchTracks(data.tracks.items)
             setSearchIsReady(true)
-            console.log(data)
+            searchRef.current.value = "" 
           }
           else if(res.status === 401){
             const newToken = await refreshAccessToken();

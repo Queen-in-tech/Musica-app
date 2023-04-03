@@ -9,7 +9,7 @@ import Charts from "../components/Charts"
 import MobileNav from "../components/MobileNav"
 import Releases from "../components/Releases"
 import MusicPlayer from "../components/MusicPlayer"
-import Search from "../components/Search"
+import Searchs from "../components/Searchs"
 
 
 const Home = () => {
@@ -20,7 +20,7 @@ const Home = () => {
   const [token, setToken] = useState(localStorage.getItem('accessToken'))
   const [resStatus, setResStatus] = useState(false)
   const [errorReload, setErrorReload] = useState(false)
-  const {currentAlbum, searchIsReady} = useContext(UserContext)
+  const {currentAlbum, searchIsReady,  setSearchIsReady} = useContext(UserContext)
   useEffect(() => {
     const getAlbums = async () => {
     try{
@@ -85,6 +85,11 @@ const refreshAccessToken = async () => {
   const [isNavOpen, setIsNavOpen] = useState(false)
   const handleClick = () => {
     setIsNavOpen(!isNavOpen)
+    setSearchIsReady(false)
+  };
+
+  const deskHandleClick = () => {
+    setSearchIsReady(false)
   };
   
   return (
@@ -93,14 +98,15 @@ const refreshAccessToken = async () => {
     {isNavOpen && <MobileNav handleClick = {handleClick}/>}
     <Header handleClick = {handleClick}/>
     <div className="lg:flex">
-    <DesktopNav />
+    <DesktopNav handleClick = {deskHandleClick}/>
+    {searchIsReady ? <Searchs/> : <div className="lg:flex">
     <Hero />
     <Charts charts = {randomAlbums}/>
+    </div>}
     </div>
-    <Releases albums= {albums} />
+    {!searchIsReady && <Releases albums= {albums} />}
     </div>
     {currentAlbum && <MusicPlayer/>}
-    {searchIsReady && <Search/>}
     </div>
   )
 }
