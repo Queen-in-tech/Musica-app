@@ -8,35 +8,36 @@ const Header = ({handleClick}) => {
   const clientSecret = "93449601c6c44e2fb4efce1e190300a2";
   const refreshToken = (localStorage.getItem('refreshToken'))
   const [token, setToken] = useState(localStorage.getItem("token"))
-  const {setSearchAlbums, setSearchTracks, setSearchIsReady} = useContext(UserContext)
+  const {setSearchAlbums, setSearchTracks, setSearchIsReady, setNextData, setPrevData} = useContext(UserContext)
+  const refreshAccessToken = async () => {
+    const response = await fetch("https://accounts.spotify.com/api/token", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
+      },
+      body: qs.stringify({
+        grant_type: "refresh_token",
+        refresh_token: refreshToken,
+        client_id: clientId,
+      }),
+      });
+      const data = await response.json();
+      return data.access_token
+  }
 
     const getSearchKey = async (e) => {
-      const refreshAccessToken = async () => {
-        const response = await fetch("https://accounts.spotify.com/api/token", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded",
-            Authorization: `Basic ${btoa(`${clientId}:${clientSecret}`)}`,
-          },
-          body: qs.stringify({
-            grant_type: "refresh_token",
-            refresh_token: refreshToken,
-            client_id: clientId,
-          }),
-          });
-          const data = await response.json();
-          return data.access_token
-      }
-
       if(e.key == "Enter" ) {
         try {
-          const res = await fetch(`https://api.spotify.com/v1/search?q=${searchRef.current.value}&type=album,track`, {
+          const res = await fetch(`https://api.spotify.com/v1/search?q=${searchRef.current.value}&type=album,track&offset=0&limit=18`, {
             headers: {
               Authorization: `Bearer ${token}`
             },
           })
           if(res.ok){
             const data = await res.json()
+            console.log(data)
+            setNextData(data.albums.next)
             setSearchAlbums(data.albums.items)
             setSearchTracks(data.tracks.items)
             setSearchIsReady(true)
@@ -56,6 +57,7 @@ const Header = ({handleClick}) => {
         }
       }
     }
+    
   
   return (
    
