@@ -1,6 +1,6 @@
 const Hero = () => {
   return (
-    <div className="flex bg-[#609EAF] rounded-[40px] px-10 relative overflow-hidden mr-3 shrink-0">
+    <div className="flex bg-[#20a8ce] rounded-[40px] px-5 sm:px-10 relative overflow-hidden mr-3 shrink-0">
       <div className="text-white py-10 md:mr-14 lg:m-0">
       <p className="mb-56 text-sm sm:mb-24">Currated playlist</p>
       <p className="text-3xl font-bold mb-2">R & B Hits</p>

@@ -6,6 +6,7 @@ import Header from "../components/Header"
 import MobileNav from "../components/MobileNav"
 import MusicPlayer from "../components/MusicPlayer"
 import AlbumsDetails from "../components/AlbumsDetails"
+import Searchs from "../components/Searchs"
 import { UserContext } from "../../context"
 
 
@@ -20,42 +21,44 @@ const Album = () => {
   const clientSecret = "93449601c6c44e2fb4efce1e190300a2";
   const refreshToken = (localStorage.getItem('refreshToken'))
   const [errorReload, setErrorReload] = useState(false)
-  const {currentTracks, currentAlbum} = useContext(UserContext)
+  const {currentAlbum, searchIsReady, setSearchIsReady} = useContext(UserContext)
   const handleClick = () => {
     setIsNavOpen(!isNavOpen)
   }
 
+  const fecthData = async() => {
+    try{
+      const res = await fetch(`https://api.spotify.com/v1/albums/${albumId}`, {
+           headers: {
+             Authorization: `Bearer ${token}`
+           },
+         })
+ 
+         if(res.ok){
+           const data = await res.json()
+           let albums = data.tracks
+           setTrack(albums)
+           setAlbum(data)
+           setIsReady(true)
+         }
+         else if(res.status === 401){
+           const newToken = await refreshAccessToken();
+           setToken(newToken); 
+           setErrorReload(true)
+         }
+         else{
+           throw new error('Resquest failed')
+         }
+     }
+     catch (error) {
+       console.error(error);
+     }
+  }
+
   useEffect(() => {
-    const fecthData = async() => {
-      try{
-        const res = await fetch(`https://api.spotify.com/v1/albums/${albumId}`, {
-             headers: {
-               Authorization: `Bearer ${token}`
-             },
-           })
-   
-           if(res.ok){
-             const data = await res.json()
-             let albums = data.tracks
-             setTrack(albums)
-             setAlbum(data)
-             setIsReady(true)
-           }
-           else if(res.status === 401){
-             const newToken = await refreshAccessToken();
-             setToken(newToken); 
-             setErrorReload(true)
-           }
-           else{
-             throw new error('Resquest failed')
-           }
-       }
-       catch (error) {
-         console.error(error);
-       }
-    }
     fecthData()
-  }, [errorReload])
+  }, [errorReload, searchIsReady])
+
 
     const refreshAccessToken = async () => {
       const response = await fetch("https://accounts.spotify.com/api/token", {
@@ -74,7 +77,6 @@ const Album = () => {
         return data.access_token
     }
 
-
   return (
     <div className="bg-[#1E1E1E]">
     <div className="pt-8 pb-4 px-8">
@@ -82,8 +84,8 @@ const Album = () => {
       <Header handleClick = {handleClick}/>
     </div>
     <div className="min-h-screen flex gap-3 px-2 md:px-6 pb-5">
-      <DesktopNav />
-      {isReady && albumId ? <AlbumsDetails track={track} album={album} /> : <div className="h-20 w-20 mx-auto sm:h-28 sm:w-32">
+      <DesktopNav/>
+      {searchIsReady ? <Searchs/> : isReady && albumId ? <AlbumsDetails track={track} album={album} /> : <div className="h-20 w-20 mx-auto sm:h-28 sm:w-32">
       <ThreeDots  
         radius="9"
         color="rgba(239, 238, 224, 0.25)" 

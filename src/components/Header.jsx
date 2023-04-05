@@ -9,6 +9,7 @@ const Header = ({handleClick}) => {
   const refreshToken = (localStorage.getItem('refreshToken'))
   const [token, setToken] = useState(localStorage.getItem("token"))
   const {setSearchAlbums, setSearchTracks, setSearchIsReady, setNextData, setPrevData} = useContext(UserContext)
+  const [toggleInput, setToggleInput] = useState(false)
   const refreshAccessToken = async () => {
     const response = await fetch("https://accounts.spotify.com/api/token", {
       method: "POST",
@@ -27,7 +28,7 @@ const Header = ({handleClick}) => {
   }
 
     const getSearchKey = async (e) => {
-      if(e.key == "Enter" ) {
+      if(e.key == "Enter") {
         try {
           const res = await fetch(`https://api.spotify.com/v1/search?q=${searchRef.current.value}&type=album,track&offset=0&limit=18`, {
             headers: {
@@ -36,12 +37,10 @@ const Header = ({handleClick}) => {
           })
           if(res.ok){
             const data = await res.json()
-            console.log(data)
             setNextData(data.albums.next)
             setSearchAlbums(data.albums.items)
             setSearchTracks(data.tracks.items)
             setSearchIsReady(true)
-            searchRef.current.value = "" 
           }
           else if(res.status === 401){
             const newToken = await refreshAccessToken();
@@ -49,7 +48,7 @@ const Header = ({handleClick}) => {
             setSearchIsReady(false)
           }
           else{
-            throw new error('Resquest failed')
+            throw new error('Request failed')
           } 
         } 
         catch (error) {
@@ -57,7 +56,13 @@ const Header = ({handleClick}) => {
         }
       }
     }
-    
+
+    const handleMobileSearchClick = () => {
+      toggleInput && getSearchKey({ key: "Enter" });
+    }
+    const handleSearchClick = () => {
+      getSearchKey({ key: "Enter" });
+    }
   
   return (
    
@@ -67,10 +72,15 @@ const Header = ({handleClick}) => {
         <img src="logo.svg" alt="" className='mr-16 ml-2'/>
         </div>
         <div className='bg-iconsBg p-3 rounded-2xl bg-[#0505052c] items-center w-full hidden sm:flex'>
-        <i class="fa-solid fa-search text-gray-600 mr-4" onClick={getSearchKey}></i> 
+        <i class="fa-solid fa-search text-gray-600 mr-4" onClick={handleSearchClick}></i> 
         <input type="text" onKeyDown={getSearchKey} ref={searchRef} className='bg-transparent text-zinc-300 placeholder:text-gray-500 outline-none w-full' placeholder='Search artists'/>
         </div>
-        <i class="fa-solid fa-search text-icons text-2xl sm:hidden"></i> 
+        {toggleInput && <input type="text" onKeyDown={getSearchKey} ref={searchRef} className='bg-transparent text-zinc-300 placeholder:text-gray-500 outline-none w-full' placeholder='Search artists'/>}
+        <i class="fa-solid fa-search text-icons text-2xl sm:hidden" 
+        onClick={() => {
+          setToggleInput(!toggleInput)
+          handleMobileSearchClick()
+          }}></i> 
     </div>
   )
 }

@@ -6,7 +6,7 @@ const DesktopNav = ({handleClick}) => {
       <div className="iconStyle">
       <Navigations to="/" title="fa-solid fa-house " onClick={handleClick}/>
       <Navigations to="" title="fa-solid fa-compact-disc "/>
-      <Navigations to="/Favourites" title="fa-solid fa-heart"/>
+      <Navigations to="/Favourites" title="fa-solid fa-heart" onClick={handleClick}/>
       <Navigations to="" title="fa-solid fa-video"/>
       </div>
 

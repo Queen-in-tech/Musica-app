@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import { Link } from "react-router-dom"
+import { UserContext } from "../../context"
 
 
 const Search = ({album}) => {
     const [isLiked, setLiked] = useState(false)
-    const [likedIds, setLikedIds] = useState([])
-     const currentLikedIds = JSON.parse(localStorage.getItem("likedIds")) || [];
+     const {setSearchIsReady} = useContext(UserContext);
 
      const handleLiked = (albumId) => {
         setLiked(!isLiked); 
@@ -32,12 +32,17 @@ const Search = ({album}) => {
 
   const saveDivId = (chartId) => {
     localStorage.setItem('albumId', chartId)
+    setSearchIsReady(false)
   }
   return (
     <div className="rounded-b-xl overflow-hidden text-white bg-zinc-900 mt-1 cursor-pointer">
      <div key={album.id} className="">
-        <Link to="/Playlists">
-           <img src={album.images[1].url} alt="album image" onClick={()=> saveDivId(album.id)}/>
+        <Link to="/Playlists" onClick={()=> {
+            saveDivId(album.id)
+           }}>
+           <img src={album.images[1].url} 
+           alt="album image"
+           />
            </Link>
            <div className='flex justify-between items-center py-2 px-4'>
            <div onClick={() => saveDivId(album.id)}>

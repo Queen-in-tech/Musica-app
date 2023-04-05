@@ -7,15 +7,22 @@ import Likes from "../components/Likes"
 import MobileNav from "../components/MobileNav"
 import MusicPlayer from "../components/MusicPlayer"
 import NoFavourites from "../components/NoFavourites"
+import Searchs from "../components/Searchs"
+
 
 const Favourites = () => {
   const [isNavOpen, setIsNavOpen] = useState(false)
   const [likedIds, setLikedIds] = useState(JSON.parse(localStorage.getItem("likedIds")) || [])
-  const {currentTracks, currentAlbum} = useContext(UserContext)
+  const {currentAlbum, searchIsReady, setSearchIsReady} = useContext(UserContext)
 
   const handleClick = () => {
     setIsNavOpen(!isNavOpen)
   }
+
+  const deskHandleClick = () => {
+    setSearchIsReady(false)
+  };
+  
   
   return (
     <div className="bg-[#1E1E1E] h-full pb-10 font-body">
@@ -24,8 +31,8 @@ const Favourites = () => {
       <Header handleClick = {handleClick}/>
     </div>
     <div className="p-1 lg:px-8 flex gap-3 min-h-screen">
-      <DesktopNav />
-      {likedIds.length > 0 ? <Likes/> : <NoFavourites /> }
+      <DesktopNav handleClick={deskHandleClick}/>
+      {searchIsReady ? <Searchs/> : likedIds.length > 0 ? <Likes/> : <NoFavourites /> }
       </div>
       {currentAlbum && <MusicPlayer/>}
     </div>

@@ -9,6 +9,7 @@ export const UserProvider = ({ children }) => {
   const [searchAlbums, setSearchAlbums] = useState()
   const [searchTracks, setSearchTracks] = useState()
   const [searchIsReady, setSearchIsReady] = useState(false)
+  const [slideUp, setSlideUp] = useState(false)
   const [nextData, setNextData] = useState("")
   const [prevData, setPrevData] = useState("")
   
@@ -23,7 +24,7 @@ export const UserProvider = ({ children }) => {
 
 
   return (
-    <UserContext.Provider value={{ currentTracks, setCurrentTracks, currentAlbum,setCurrentAlbum, updateTracks, updateAlbum, isPlaying ,setIsPlaying, searchAlbums, setSearchAlbums, searchTracks, setSearchTracks, searchIsReady, setSearchIsReady, nextData, setNextData, prevData, setPrevData}}>
+    <UserContext.Provider value={{ currentTracks, setCurrentTracks, currentAlbum,setCurrentAlbum, updateTracks, updateAlbum, isPlaying ,setIsPlaying, searchAlbums, setSearchAlbums, searchTracks, setSearchTracks, searchIsReady, setSearchIsReady, nextData, setNextData, prevData, setPrevData, slideUp, setSlideUp}}>
       {children}
     </UserContext.Provider>
   );
