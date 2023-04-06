@@ -16,7 +16,7 @@ const App = () => {
     const [refreshToken, setRefreshToken] = useState(localStorage.getItem('refreshToken') || '');
     const clientId = "69373bc5c3094a578305a7e175bbe480";
     const clientSecret = "93449601c6c44e2fb4efce1e190300a2";
-    const redirectUri = "http://localhost:5173/";
+    const redirectUri = "https://642d5f1310a38b1ec7c78448--brilliant-fudge-6a0d4e.netlify.app";
 
     useEffect(() => {
         const queryString = window.location.search;
