@@ -6,6 +6,7 @@ import { ThreeDots } from  'react-loader-spinner'
 const Likes = () => {
   const [albums, setAlbums] = useState([])
   const [isReady, setIsReady] = useState(false)
+  const [liked, setLiked] = useState(true)
   const likedIds = JSON.parse(window.localStorage.getItem("likedIds"))
   const [token, setToken] = useState(localStorage.getItem("accessToken"))
   const clientId = "69373bc5c3094a578305a7e175bbe480"
@@ -14,7 +15,7 @@ const Likes = () => {
 
   useEffect(() => {
     const showLiked = async () => {
-      const likedAlbums = await Promise.all(
+     if(likedIds.length > 0){const likedAlbums = await Promise.all(
         likedIds.map( async (liked) => {
           try{
             const res = await fetch(`https://api.spotify.com/v1/albums/${liked}`, {
@@ -41,8 +42,8 @@ const Likes = () => {
         
     }))
     setAlbums(likedAlbums.filter(album => album !== undefined))
-  }
-    showLiked()
+  }}
+  showLiked() 
   }, [likedIds])
 
   const refreshAccessToken = async () => {

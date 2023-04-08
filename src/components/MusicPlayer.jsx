@@ -138,14 +138,19 @@ const MusicPlayer = () => {
        
     <div className='flex items-center justify-between mb-2'>
           <audio src={url} ref = {audioEl} onEnded={handleEnded}/>
+          <Link to="/Playlists" onClick={() => setSearchIsReady(false)}>
           {!slideUp && <div className="flex gap-3 items-center sm:hidden ">
           <img className="" alt="img" src={currentAlbum.images[2].url}  />
+
           <div className="flex flex-col">
             <h3 className="text-white font-bold text-sm">{currentTracks.name}</h3>
             <h3 className="text-gray-400 font-light text-xs">{currentTracks.artists[0].name}</h3>
           </div>
           </div>}
+          </Link>
 
+
+          <Link to="/Playlists" onClick={() => setSearchIsReady(false)}>
           <div className="hidden sm:flex gap-3 items-center ">
           <img className="" alt="img" src={currentAlbum.images[2].url}  />
           <div className="flex flex-col">
@@ -153,6 +158,8 @@ const MusicPlayer = () => {
             <h3 className="text-gray-400 font-light text-xs">{currentTracks.artists[0].name}</h3>
           </div>
           </div>
+          </Link>
+
          
           <div className="hidden sm:flex flex-col items-center gap-4">
             <div className="text-gray-200 text-lg flex gap-8">
@@ -168,7 +175,7 @@ const MusicPlayer = () => {
             <p>{currentTime}</p>
             <input 
             type="range" 
-            className="sm:w-[250px] md:w-[420px] lg:w-[745px] accent-[#FACD66]"
+            className="sm:w-[200px] md:w-[400px] lg:w-[600px] accent-[#FACD66]"
             min={0} 
             max={inputDuration} 
             value={inputCurrentTime} 

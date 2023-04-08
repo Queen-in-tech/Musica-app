@@ -25,15 +25,15 @@ const Favourites = () => {
   
   
   return (
-    <div className="bg-[#1E1E1E] h-full pb-10 font-body">
-    <div className="pt-6 pb-2 px-8">
+    <div className="bg-[#1E1E1E] h-full pb-10 font-body p-5 lg:p-8">
       {isNavOpen && <MobileNav handleClick = {handleClick}/>}
+    <div className=" px-5 py-5 lg:py-8 lg:px-8">
       <Header handleClick = {handleClick}/>
     </div>
-    <div className="p-1 lg:px-8 flex gap-3 min-h-screen">
+    <div className="flex gap-3 min-h-screen px-5 lg:px-8">
       <DesktopNav handleClick={deskHandleClick}/>
-      {searchIsReady ? <Searchs/> : likedIds.length > 0 ? <Likes/> : <NoFavourites /> }
-      </div>
+      {searchIsReady ? <Searchs/> : likedIds.length > 0 ? <Likes/> : likedIds.length === 0 && <NoFavourites /> }
+    </div>
       {currentAlbum && <MusicPlayer/>}
     </div>
   )

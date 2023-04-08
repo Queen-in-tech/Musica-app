@@ -48,7 +48,7 @@ const AlbumsDetails = ({track, album}) => {
 
     
   return (
-    <div className="mx-auto lg:mx-0 shrink md:shrink-0">
+    <div className="min-h-screen mx-auto lg:mx-0 shrink md:shrink-0">
     <div className='flex flex-col sm:flex-row sm:gap-8 font-body md:mx-0'>
         <img src={album.images[1].url} alt="album-img" className="rounded-lg w-[350px] mx-auto sm:mx-0 sm:w-80 sm:mb-8"/>
         <div className='text-white mt-3 sm:mt-32 pl-2'>

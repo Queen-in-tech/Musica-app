@@ -22,7 +22,7 @@ const Tracks = ({tracks, album}) => {
             <i class="fa-solid fa-ellipsis-vertical text-[#FACD66] hidden sm:block text-sm col-span-1 text-right mr-1"></i>
             <div className="w-full sm:hidden">
                 <p className="font-light text-sm mb-1">{`${track.name}`}</p>
-                <p className="font-light text-sm capitalize">{`${track.type}`}</p>
+                <p className="font-light text-sm capitalize">{`${track.artists[0].name}`}</p>
             </div>
             <div className="flex flex-col items-end gap-2 sm:hidden">
                 <i class="fa-solid fa-ellipsis-vertical text-[#FACD66]"></i>

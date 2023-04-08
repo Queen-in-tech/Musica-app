@@ -66,7 +66,7 @@ const Header = ({handleClick}) => {
   
   return (
    
-    <div className='mb-8 flex justify-between px-3 pt-4 sm:p-0 shrink-o items-center'>
+    <div className='mb-8 flex justify-between px-5 pt-4 lg:p-0 shrink-o items-center'>
         <div className='flex'>
         <i class="fa-solid fa-bars text-white mr-4 text-2xl cursor-pointer lg:hidden" onClick ={handleClick}></i>
         <img src="logo.svg" alt="" className='mr-16 ml-2'/>

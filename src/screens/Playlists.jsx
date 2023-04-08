@@ -78,12 +78,12 @@ const Album = () => {
     }
 
   return (
-    <div className="bg-[#1E1E1E]">
-    <div className="pt-8 pb-4 px-8">
-      {isNavOpen && <MobileNav handleClick = {handleClick}/>}
+    <div className="min-h-screen bg-[#1E1E1E]">
+    {isNavOpen && <MobileNav handleClick = {handleClick}/>}
+    <div className="px-5 py-5 lg:py-8 lg:px-8 ">
       <Header handleClick = {handleClick}/>
     </div>
-    <div className="min-h-screen flex gap-3 px-2 md:px-6 pb-5">
+    <div className="min-h-screen flex gap-3 px-5 lg:px-8 ">
       <DesktopNav/>
       {searchIsReady ? <Searchs/> : isReady && albumId ? <AlbumsDetails track={track} album={album} /> : <div className="h-20 w-20 mx-auto sm:h-28 sm:w-32">
       <ThreeDots  
@@ -92,7 +92,7 @@ const Album = () => {
         ariaLabel="three-dots-loading"
         visible={true}/>
         </div>}
-      </div>
+    </div>
       {currentAlbum && <MusicPlayer/>}
     </div>
   )

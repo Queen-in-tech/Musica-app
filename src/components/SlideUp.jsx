@@ -67,7 +67,8 @@ const SlideUp = ({audio}) => {
 
   return (
     
-    <div className='text-white text-2xl sm:hidden h-[75vh] items-center mx-auto rounded-2xl bg-black'>
+    <div className='text-white text-2xl sm:hidden h-[75
+    vh] items-center mx-auto pb-6'>
           <img className="pt-16 mx-auto" alt="img" src={currentAlbum.images[1].url}  />
 
           <div className="flex flex-col mt-6 items-center">
