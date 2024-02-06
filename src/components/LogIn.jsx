@@ -1,7 +1,7 @@
 const LogIn = () => {
 
 const handleClick = () => {
-    const clientId = "69373bc5c3094a578305a7e175bbe480";
+    const clientId = "fbed0166d3f0488b8dd99e64dc679d71";
     const redirectPath = "/"; 
     const redirectUrl = window.location.origin + redirectPath;
     const apiUrl = "https://accounts.spotify.com/authorize";
