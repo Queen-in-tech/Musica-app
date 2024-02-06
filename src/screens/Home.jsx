@@ -101,7 +101,7 @@ const Home = () => {
           {searchIsReady ? (
             <Searchs />
           ) : (
-            <div className="lg:flex">
+            <div className="lg:flex lg:justify-between lg:items-center">
               <Hero />
               <Charts charts={randomAlbums} />
             </div>
