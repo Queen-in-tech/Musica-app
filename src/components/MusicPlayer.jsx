@@ -59,9 +59,6 @@ const MusicPlayer = () => {
 
       return () => clearInterval(intervalId);
     }
-    // useEffect(() => {
-    //   audioEl?.current?.duration && ;
-    // }, [audioEl.current.duration]);
   }, [
     audioEl,
     currentIndex,
